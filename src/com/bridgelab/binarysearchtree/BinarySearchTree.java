@@ -11,7 +11,7 @@ package com.bridgelab.binarysearchtree;
 public class BinarySearchTree
 {
 	// Root of BST
-    Node root;
+    static Node root;
  
     // Constructor
     BinarySearchTree()
@@ -63,7 +63,30 @@ public class BinarySearchTree
             printRecursion(root.right);
         }
     }
- 
+
+    // Function to traverse the tree in preorder
+    // and check if the given node exists in it
+    static boolean ifNodeExists( Node node, int key)
+    {
+	     if (node == null)
+	         return false;
+	  
+	     if (node.key == key)
+	         return true;
+	  
+	     // then recur on left sutree /
+	     boolean searchLeft = ifNodeExists(node.left, key);
+	    
+	     // node found, no need to look further
+	     if(searchLeft) return true;
+	  
+	     // node is not found in left,
+	     // so recur on right subtree /
+	     boolean searchRight = ifNodeExists(node.right, key);
+	  
+	     return searchRight;
+    }
+    
     public static void main(String[] args)
     {
         BinarySearchTree tree = new BinarySearchTree();
@@ -84,5 +107,12 @@ public class BinarySearchTree
  
         // print tree.
         tree.printTree();
+        System.out.println("Searched key . ");
+        int key = 63;
+        
+        if (ifNodeExists(root, key))
+            System.out.println( key + " Key is present in a tree.");
+        else
+            System.out.println(key + " is NOT present in a tree.");
     }
 }
