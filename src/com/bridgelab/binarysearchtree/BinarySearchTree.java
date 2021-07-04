@@ -29,21 +29,22 @@ public class BinarySearchTree
        insert a new key in BST */
     Node insertRec(Node root, int key)
     {
- 
-        /* If the tree is empty,
+    	/* If the tree is empty,
            return a new node */
         if (root == null)
         {
             root = new Node(key);
             return root;
         }
- 
         /* Otherwise, recur down the tree */
         if (key < root.key)
+        {
             root.left = insertRec(root.left, key);
+        }
         else if (key > root.key)
+        {
             root.right = insertRec(root.right, key);
- 
+        }
         /* return the (unchanged) node pointer */
         return root;
     }
@@ -71,7 +72,7 @@ public class BinarySearchTree
         tree.insert(30);
         tree.insert(70);
  
-        // print traversal of the BST
+        // print tree.
         tree.printTree();
     }
 }
